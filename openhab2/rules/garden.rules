@@ -1,0 +1,75 @@
+var boolean realFirstStartup = true
+var Timer timer1 = null
+var Timer timer2 = null
+
+var Timer tempAllertTimer = null
+var Integer tempAllertSleep = 180
+
+rule "Notification on low temperature"
+when
+    Item mihome_sensor_weather_v1_158d00025ee798_temperature received update
+then
+    var temp = (mihome_sensor_weather_v1_158d00025ee798_temperature.state as Number).floatValue;
+    if(temp < 1.0) {
+        if(tempAllertTimer !== null) {
+            tempAllertTimer.reschedule(now.plusMinutes(tempAllertSleep))
+        } else {
+            sendBroadcastNotification("Low temperature alert!");
+            tempAllertTimer = createTimer(now.plusMinutes(tempAllertSleep))[|
+                tempAllertTimer = null
+            ]
+        }
+    } else {
+        tempAllertTimer = null
+    }
+end
+
+rule "Sprinkler schedule"
+when
+    Time cron "0 0 5 1/2 * ? *"
+then
+    if(ScheduleSprinklers.state == ON) {
+        Valve1.sendCommand(ON)
+        createTimer(now.plusMinutes(6))[|
+            Valve1.sendCommand(OFF)
+        ]
+    }
+end
+
+rule "Dripping schedule"
+when
+    Time cron "0 30 5 * * ? *" or
+    Time cron "0 30 20 * * ? *"
+then
+    if(ScheduleDrippings.state == ON) {
+        Valve2.sendCommand(ON)
+        createTimer(now.plusMinutes(10))[|
+            Valve2.sendCommand(OFF)
+        ]
+    }
+end
+
+rule "Valve state system startup"
+when
+    System started
+then
+    if(realFirstStartup) {
+        Thread::sleep(10 * 1000) // let persistance finish restoring a few seconds
+
+        Valve1.sendCommand(OFF)
+        Valve2.sendCommand(OFF)
+
+        if(ScheduleSprinklers.state === NULL) ScheduleSprinklers.postUpdate(OFF)
+        if(ScheduleSprinklersInterval.state === NULL) ScheduleSprinklersInterval.postUpdate(1)
+        if(ScheduleSprinklersDuration.state === NULL) ScheduleSprinklersDuration.postUpdate(1)
+        if(ScheduleSprinklersStartHour.state === NULL) ScheduleSprinklersStartHour.postUpdate(6)
+        if(ScheduleSprinklersStartMinute.state === NULL) ScheduleSprinklersStartMinute.postUpdate(0)
+
+        if(ScheduleDrippings.state === NULL) ScheduleDrippings.postUpdate(OFF)
+        if(ScheduleDrippingsInterval.state === NULL) ScheduleDrippingsInterval.postUpdate(1)
+        if(ScheduleDrippingsDuration.state === NULL) ScheduleDrippingsDuration.postUpdate(1)
+        if(ScheduleDrippingsStartHour.state === NULL) ScheduleDrippingsStartHour.postUpdate(6)
+        if(ScheduleDrippingsStartMinute.state === NULL) ScheduleDrippingsStartMinute.postUpdate(0)
+    }
+    realFirstStartup = false
+end

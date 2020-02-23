@@ -1,0 +1,61 @@
+var Timer airAllertTimer = null
+var Integer airAllertSleep = 15
+
+
+rule "Notification on door open"
+when
+    Item mihome_sensor_magnet_aq2_158d0002ca111b_isOpen received update OPEN
+then
+    if (
+        PhoneOnline.state != ON &&
+        PhoneOnline2.state != ON
+    ) {
+        sendBroadcastNotification("Door was opened!");
+    }
+end
+
+
+rule "Notification on window open"
+when
+    Item mihome_sensor_magnet_aq2_158d0002c9587a_isOpen received update OPEN or
+    Item mihome_sensor_magnet_aq2_158d0002ca11db_isOpen received update OPEN or
+    Item mihome_sensor_magnet_aq2_158d0002bfa211_isOpen received update OPEN or
+    Item mihome_sensor_magnet_aq2_158d0002ca1383_isOpen received update OPEN or
+    Item mihome_sensor_magnet_aq2_158d0002bfa1ed_isOpen received update OPEN
+then
+    if (
+        PhoneOnline.state != ON &&
+        PhoneOnline2.state != ON
+    ) {
+        sendBroadcastNotification("Window was opened!");
+    }
+end
+
+
+rule "Notification on water leak"
+when
+    Item mihome_sensor_wleak_aq1_158d000233667b_leak received update ON or
+    Item mihome_sensor_wleak_aq1_158d000255fd4f_leak received update ON
+then
+    sendBroadcastNotification("Water leak was detected!");
+end
+
+
+rule "Air pollution to high"
+when
+    Item XAIR_airquality received update
+then
+    var quality = (XAIR_airquality.state as Number).floatValue;
+    if(quality > 100.0) {
+        if(airAllertTimer !== null) {
+            airAllertTimer.reschedule(now.plusMinutes(airAllertSleep))
+        } else {
+            sendBroadcastNotification("Air pollution is to high!");
+            airAllertTimer = createTimer(now.plusMinutes(airAllertSleep))[|
+                airAllertTimer = null
+            ]
+        }
+    } else {
+        airAllertTimer = null
+    }
+end

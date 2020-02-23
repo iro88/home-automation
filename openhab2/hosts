@@ -1,0 +1,9 @@
+# /etc/hosts
+127.0.0.1 localhost
+127.0.1.1 openHABianPi
+
+# addresses used in items and things (remember to set real IPs)
+192.168.1.1 hosts.phone1
+192.168.1.2 hosts.phone2
+192.168.1.3 hosts.valve1
+192.168.1.4 hosts.valve2

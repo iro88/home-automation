@@ -1,0 +1,18 @@
+Number GARDEN_temp     "Temperature [%2.1f °C]" <temperature> (grafana_persist) {channel="mihome:sensor_weather_v1:158d00025ee798:temperature"}
+Number GARDEN_humidity "Humidity [%d %%]"       <humidity>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00025ee798:humidity"}
+Number GARDEN_pressure "Pressure [%s %unit%]"   <pressure>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00025ee798:pressure"}
+
+Switch Valve1 "Valve1 [%s]" { http=">[ON:POST:http://hosts.valve1/cm?cmnd=Power%%20On] >[OFF:POST:http://hosts.valve1/cm?cmnd=Power%%20Off]" }
+Switch Valve2 "Valve2 [%s]" { http=">[ON:POST:http://hosts.valve2/cm?cmnd=Power%%20On] >[OFF:POST:http://hosts.valve2/cm?cmnd=Power%%20Off]" }
+
+Switch ScheduleSprinklers "Schedule sprinklers" (simple_persist)
+Number ScheduleSprinklersInterval "Schedule interval [%.0f]" (simple_persist)
+Number ScheduleSprinklersDuration "Schedule duration [%.0f]" (simple_persist)
+Number ScheduleSprinklersStartHour "Start hour [%.0f]" (simple_persist)
+Number ScheduleSprinklersStartMinute "Start minute [%.0f]" (simple_persist)
+
+Switch ScheduleDrippings "Schedule drippings" (simple_persist)
+Number ScheduleDrippingsInterval "Schedule interval [%.0f]" (simple_persist)
+Number ScheduleDrippingsDuration "Schedule duration [%.0f]" (simple_persist)
+Number ScheduleDrippingsStartHour "Start hour [%.0f]" (simple_persist)
+Number ScheduleDrippingsStartMinute "Start minute [%.0f]" (simple_persist)

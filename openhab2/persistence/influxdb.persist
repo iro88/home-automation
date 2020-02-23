@@ -1,0 +1,10 @@
+Strategies {
+    everyMinute : "0 * * * * ?"
+    veryHour    : "0 0 * * * ?"
+    everyDay    : "0 0 0 * * ?"
+    default = everyChange
+}
+
+Items {
+    grafana_persist* : strategy = everyChange, everyMinute
+}

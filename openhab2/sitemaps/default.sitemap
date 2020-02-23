@@ -1,0 +1,80 @@
+sitemap default label="Sitemap"
+{
+    Text label="Security" icon="alarm"
+    {
+        Text item=mihome_sensor_magnet_aq2_158d0002ca111b_isOpen label="Drzwi [%s]" icon="door"
+        Text item=mihome_sensor_magnet_aq2_158d0002c9587a_isOpen label="Okno sypialnia [%s]"
+        Text item=mihome_sensor_magnet_aq2_158d0002ca11db_isOpen label="Okno buro [%s]"
+        Text item=mihome_sensor_magnet_aq2_158d0002bfa211_isOpen label="Okno kuchnia [%s]"
+        Text item=mihome_sensor_magnet_aq2_158d0002ca1383_isOpen label="Okno salon 1 [%s]"
+        Text item=mihome_sensor_magnet_aq2_158d0002bfa1ed_isOpen label="Okno salon 2 [%s]"
+        Text item=mihome_sensor_wleak_aq1_158d000255fd4f_leak label="Przeciek kuchnia [MAP(leak.map):%s]" icon="water"
+        Text item=mihome_sensor_wleak_aq1_158d000233667b_leak label="Przeciek lazienka [MAP(leak.map):%s]" icon="water"
+    }
+
+    Text label="Air Purifier 2S" icon="fan"
+    {
+        Switch item=XAIR_mode label="Modus []" icon="fan" mappings=[auto=Auto, silent=Silent, favorite=Manual, idle=Off]
+        Switch item=XAIR_power
+        Text item=XAIR_humidity
+        Text item=XAIR_temp
+        Text item=XAIR_airquality
+        Text item=XAIR_avgairquality
+        Text item=XAIR_filterlife
+        Text item=XAIR_filtermaxlife
+        Text item=XAIR_filterhours
+        Text item=XAIR_usedhours
+        Text item=XAIR_motorspeed
+        Text item=XAIR_purifiedvol
+        Setpoint item=XAIR_favlevel minValue=1 maxValue=16 step=1
+        Switch item=XAIR_led
+        Switch item=XAIR_buzzer
+        Switch item=XAIR_childlock
+    }
+
+    Text label="Garden" icon="lawnmower"
+    {
+        Text item=mihome_sensor_weather_v1_158d00025ee798_temperature label="Temperatura [%s %unit%]" icon="temperature"
+        Text item=mihome_sensor_weather_v1_158d00025ee798_humidity label="Wilgotność [%s %unit%]" icon="humidity"
+        Text item=mihome_sensor_weather_v1_158d00025ee798_pressure label="Ciśnienie [%s %unit%]" icon="pressure"
+
+        Text label="Nawadnianie" icon="water"
+        {
+            Frame
+            {
+                Switch item=Valve1 label="Zraszacze [%s]" icon="faucet"
+                Switch item=Valve2 label="Puszka [%s]" icon="faucet"
+            }
+
+            Frame
+            {
+                Switch item=ScheduleSprinklers label="Automatyczne zraszanie" icon="time"
+
+                Setpoint item=ScheduleSprinklersInterval label="Co [%.0f dni]" minValue=1 maxValue=7 step=1 visibility=[ScheduleSprinklers==OFF]
+                Setpoint item=ScheduleSprinklersDuration label="Przez [%.0f minut]" minValue=1 maxValue=60 step=1 visibility=[ScheduleSprinklers==OFF]
+                Setpoint item=ScheduleSprinklersStartHour label="Godzina [%.0f]" minValue=0 maxValue=24 step=1 visibility=[ScheduleSprinklers==OFF]
+                Setpoint item=ScheduleSprinklersStartMinute label="Minuta [%.0f]" minValue=0 maxValue=60 step=1 visibility=[ScheduleSprinklers==OFF]
+
+                Text item=ScheduleSprinklersInterval label="Co [%.0f dni]" visibility=[ScheduleSprinklers==ON]
+                Text item=ScheduleSprinklersDuration label="Przez [%.0f minut]" visibility=[ScheduleSprinklers==ON]
+                Text item=ScheduleSprinklersStartHour label="Godzina [%.0f]" visibility=[ScheduleSprinklers==ON]
+                Text item=ScheduleSprinklersStartMinute label="Minuta [%.0f]" visibility=[ScheduleSprinklers==ON]
+            }
+
+            Frame
+            {
+                Switch item=ScheduleDrippings label="Linia kroplująca" icon="time"
+
+                Setpoint item=ScheduleDrippingsInterval label="Co [%.0f dni]" minValue=1 maxValue=7 step=1 visibility=[ScheduleDrippings==OFF]
+                Setpoint item=ScheduleDrippingsDuration label="Przez [%.0f minut]" minValue=1 maxValue=60 step=1 visibility=[ScheduleDrippings==OFF]
+                Setpoint item=ScheduleDrippingsStartHour label="Godzina [%.0f]" minValue=0 maxValue=24 step=1 visibility=[ScheduleDrippings==OFF]
+                Setpoint item=ScheduleDrippingsStartMinute label="Minuta [%.0f]" minValue=0 maxValue=60 step=1 visibility=[ScheduleDrippings==OFF]
+
+                Text item=ScheduleDrippingsInterval label="Co [%.0f dni]" visibility=[ScheduleDrippings==ON]
+                Text item=ScheduleDrippingsDuration label="Przez [%.0f minut]" visibility=[ScheduleDrippings==ON]
+                Text item=ScheduleDrippingsStartHour label="Godzina [%.0f]" visibility=[ScheduleDrippings==ON]
+                Text item=ScheduleDrippingsStartMinute label="Minuta [%.0f]" visibility=[ScheduleDrippings==ON]
+            }
+        }
+    }
+}

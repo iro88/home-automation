@@ -1,0 +1,23 @@
+var Timer timer = null
+var Integer timeout = 1
+
+rule "Turn on light in kitchen when dark"
+when
+    Item mihome_sensor_motion_158d00020dde78_motion received update ON
+then
+    if(timer !== null) {
+        timer.reshedule(now.plusMinutes(timeout))
+    } else {
+        if(
+            mihome_gateway_7c49eb88f1e0_brightness.state == 0 && 
+            mihome_gateway_7c49eb88f1e0_illumination.state <= 500
+        ) {
+            logInfo("comfort.rules", "illumination: " + mihome_gateway_7c49eb88f1e0_illumination.state.toString)
+            mihome_gateway_7c49eb88f1e0_brightness.sendCommand(ON)
+            timer = createTimer(now.plusMinutes(timeout))[|
+                mihome_gateway_7c49eb88f1e0_brightness.sendCommand(OFF)
+                timer = null
+            ]
+        }
+    }
+end

@@ -1,0 +1,2 @@
+Thing network:pingdevice:myphone [ hostname="hosts.phone1", retry=2, timeout=1000, refreshInterval=15000 ]
+Thing network:pingdevice:myphone2 [ hostname="hosts.phone2", retry=2, timeout=1000, refreshInterval=15000 ]

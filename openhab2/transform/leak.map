@@ -1,0 +1,5 @@
+ON=WET
+OFF=DRY
+NULL=DRY
+-=DRY
+=DRY

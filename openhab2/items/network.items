@@ -1,0 +1,2 @@
+Switch PhoneOnline { channel="network:pingdevice:myphone:online" }
+Switch PhoneOnline2 { channel="network:pingdevice:myphone2:online" }

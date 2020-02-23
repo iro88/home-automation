@@ -1,0 +1,16 @@
+Switch XAIR_led		      "Led [%s]" <slider>                                        {channel="miio:generic:07D52CFA:led"}
+String XAIR_mode	      "Mode Air Purifier"                                        {channel="miio:generic:07D52CFA:mode"}
+Number XAIR_avgairquality "AVG PPM 2.5" <chart>                                      {channel="miio:generic:07D52CFA:averageaqi"}
+Number XAIR_airquality	  "PPM 2.5 [%d]" <chart>                   (grafana_persist) {channel="miio:generic:07D52CFA:aqi"}
+Number XAIR_motorspeed	  "Motor [%d rpm]" <flow>                                    {channel="miio:generic:07D52CFA:motorspeed"}
+Switch XAIR_childlock	  "Child lock [%s]" <lock>                                   {channel="miio:generic:07D52CFA:childlock"}
+Switch XAIR_buzzer	      "Buzzer [%s]" <soundvolume>                                {channel="miio:generic:07D52CFA:buzzer"}
+Number XAIR_favlevel	  "Manual Level Speed" <wind>                                {channel="miio:generic:07D52CFA:favoritelevel"}
+Switch XAIR_power	      "Power Air Purfier" <switch>                               {channel="miio:generic:07D52CFA:power"}
+Number XAIR_humidity      "Humidity [%d %%]" <humidity>            (grafana_persist) {channel="miio:generic:07D52CFA:humidity"}
+Number XAIR_usedhours	  "Used Hours [%d hours]" <time>                             {channel="miio:generic:07D52CFA:usedhours"}
+Number XAIR_filterhours	  "Filter Hours [%d hours]" <time>                           {channel="miio:generic:07D52CFA:filterhours"}
+Number XAIR_purifiedvol	  "Purified air volume [%d m3]" <smoke>                      {channel="miio:generic:07D52CFA:purifyvolume"}
+Number XAIR_temp          "Temperature [%2.1f °C]" <temperature>   (grafana_persist) {channel="miio:generic:07D52CFA:temperature"}
+Number XAIR_filtermaxlife "Filter Max Life Time [%d hours]" <time>                   {channel="miio:generic:07D52CFA:filtermaxlife"}
+Number XAIR_filterlife	  "Filter Remaining Life Time [%d %%]" <pie>                 {channel="miio:generic:07D52CFA:filterlife"}
