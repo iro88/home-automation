@@ -1,0 +1,15 @@
+Number BEDROOM_temp     "Temperature [%2.1f °C]" <temperature> (grafana_persist) {channel="mihome:sensor_weather_v1:158d00044f7c6c:temperature"}
+Number BEDROOM_humidity "Humidity [%d %%]"       <humidity>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00044f7c6c:humidity"}
+Number BEDROOM_pressure "Pressure [%s %unit%]"   <pressure>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00044f7c6c:pressure"}
+
+Number OFFICEROOM_temp     "Temperature [%2.1f °C]" <temperature> (grafana_persist) {channel="mihome:sensor_weather_v1:158d00042fdac7:temperature"}
+Number OFFICEROOM_humidity "Humidity [%d %%]"       <humidity>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00042fdac7:humidity"}
+Number OFFICEROOM_pressure "Pressure [%s %unit%]"   <pressure>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00042fdac7:pressure"}
+
+Number LIVINGROOM_temp     "Temperature [%2.1f °C]" <temperature> (grafana_persist) {channel="mihome:sensor_weather_v1:158d0004606338:temperature"}
+Number LIVINGROOM_humidity "Humidity [%d %%]"       <humidity>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d0004606338:humidity"}
+Number LIVINGROOM_pressure "Pressure [%s %unit%]"   <pressure>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d0004606338:pressure"}
+
+Number BATHROOM_temp     "Temperature [%2.1f °C]" <temperature> (grafana_persist) {channel="mihome:sensor_weather_v1:158d00042fd9c4:temperature"}
+Number BATHROOM_humidity "Humidity [%d %%]"       <humidity>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00042fd9c4:humidity"}
+Number BATHROOM_pressure "Pressure [%s %unit%]"   <pressure>    (grafana_persist) {channel="mihome:sensor_weather_v1:158d00042fd9c4:pressure"}

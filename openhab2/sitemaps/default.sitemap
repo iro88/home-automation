@@ -1,6 +1,6 @@
 sitemap default label="Sitemap"
 {
-    Text label="Security" icon="alarm"
+    Text label="Alarm" icon="alarm"
     {
         Text item=mihome_sensor_magnet_aq2_158d0002ca111b_isOpen label="Drzwi [%s]" icon="door"
         Text item=mihome_sensor_magnet_aq2_158d0002c9587a_isOpen label="Okno sypialnia [%s]"
@@ -32,7 +32,63 @@ sitemap default label="Sitemap"
         Switch item=XAIR_childlock
     }
 
-    Text label="Garden" icon="lawnmower"
+    Text label="Salon" icon="door"
+    {
+        Frame
+        {
+            Text item=mihome_sensor_weather_v1_158d0004606338_temperature label="Temperatura [%s %unit%]" icon="temperature"
+            Text item=mihome_sensor_weather_v1_158d0004606338_humidity label="Wilgotność [%s %unit%]" icon="humidity"
+            Text item=mihome_sensor_weather_v1_158d0004606338_pressure label="Ciśnienie [%s %unit%]" icon="pressure"
+        }
+
+        Frame
+        {
+            Text item=mihome_sensor_magnet_aq2_158d0002ca1383_isOpen label="Okno 1 [%s]"
+            Text item=mihome_sensor_magnet_aq2_158d0002bfa1ed_isOpen label="Okno 2 [%s]"
+        }
+    }
+
+    Text label="Sypialnia" icon="door"
+    {
+        Frame
+        {
+            Text item=mihome_sensor_weather_v1_158d00044f7c6c_temperature label="Temperatura [%s %unit%]" icon="temperature"
+            Text item=mihome_sensor_weather_v1_158d00044f7c6c_humidity label="Wilgotność [%s %unit%]" icon="humidity"
+            Text item=mihome_sensor_weather_v1_158d00044f7c6c_pressure label="Ciśnienie [%s %unit%]" icon="pressure"
+        }
+
+        Frame
+        {
+            Text item=mihome_sensor_magnet_aq2_158d0002c9587a_isOpen label="Okno [%s]"
+        }
+    }
+
+    Text label="Biurowy" icon="door"
+    {
+        Frame
+        {
+            Text item=mihome_sensor_weather_v1_158d00042fdac7_temperature label="Temperatura [%s %unit%]" icon="temperature"
+            Text item=mihome_sensor_weather_v1_158d00042fdac7_humidity label="Wilgotność [%s %unit%]" icon="humidity"
+            Text item=mihome_sensor_weather_v1_158d00042fdac7_pressure label="Ciśnienie [%s %unit%]" icon="pressure"
+        }
+
+        Frame
+        {
+             Text item=mihome_sensor_magnet_aq2_158d0002ca11db_isOpen label="Okno [%s]"
+        }
+    }
+
+    Text label="Łazienka" icon="door"
+    {
+        Frame
+        {
+            Text item=mihome_sensor_weather_v1_158d00042fd9c4_temperature label="Temperatura [%s %unit%]" icon="temperature"
+            Text item=mihome_sensor_weather_v1_158d00042fd9c4_humidity label="Wilgotność [%s %unit%]" icon="humidity"
+            Text item=mihome_sensor_weather_v1_158d00042fd9c4_pressure label="Ciśnienie [%s %unit%]" icon="pressure"
+        }
+    }
+
+    Text label="Ogród" icon="lawnmower"
     {
         Text item=mihome_sensor_weather_v1_158d00025ee798_temperature label="Temperatura [%s %unit%]" icon="temperature"
         Text item=mihome_sensor_weather_v1_158d00025ee798_humidity label="Wilgotność [%s %unit%]" icon="humidity"
