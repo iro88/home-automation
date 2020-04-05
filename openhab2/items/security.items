@@ -1,0 +1,1 @@
+Switch SECURITY_MODE "Security mode" <switch> (simple_persist)

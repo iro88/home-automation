@@ -7,7 +7,8 @@ when
     Item mihome_sensor_magnet_aq2_158d0002ca111b_isOpen received update OPEN
 then
     if (
-        PhoneOnline.state != ON &&
+        SECURITY_MODE == ON ||
+        PhoneOnline.state != ON ||
         PhoneOnline2.state != ON
     ) {
         sendBroadcastNotification("Door was opened!");
@@ -24,7 +25,8 @@ when
     Item mihome_sensor_magnet_aq2_158d0002bfa1ed_isOpen received update OPEN
 then
     if (
-        PhoneOnline.state != ON &&
+        SECURITY_MODE == ON ||
+        PhoneOnline.state != ON ||
         PhoneOnline2.state != ON
     ) {
         sendBroadcastNotification("Window was opened!");
