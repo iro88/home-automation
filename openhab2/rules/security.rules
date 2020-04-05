@@ -1,5 +1,11 @@
-var Timer airAllertTimer = null
-var Integer airAllertSleep = 15
+var Timer airAlertTimer = null
+var Integer airAlertSleep = 15
+
+var Timer doorAlertTimer = null
+var Integer doorAlertSleep = 1
+
+var Timer windowAlertTimer = null
+var Integer windowAlertSleep = 1
 
 
 rule "Notification on door open"
@@ -7,11 +13,16 @@ when
     Item mihome_sensor_magnet_aq2_158d0002ca111b_isOpen received update OPEN
 then
     if (
-        SECURITY_MODE == ON ||
-        PhoneOnline.state != ON ||
-        PhoneOnline2.state != ON
+        SecurityMode == ON ||
+        (PhoneOnline.state != ON &&
+        PhoneOnline2.state != ON)
     ) {
-        sendBroadcastNotification("Door was opened!");
+        if(doorAlertTimer === null) {
+            sendBroadcastNotification("Door was opened!");
+            doorAlertTimer = createTimer(now.plusMinutes(doorAlertSleep))[|
+                doorAlertTimer = null
+            ]
+        }
     }
 end
 
@@ -25,11 +36,16 @@ when
     Item mihome_sensor_magnet_aq2_158d0002bfa1ed_isOpen received update OPEN
 then
     if (
-        SECURITY_MODE == ON ||
-        PhoneOnline.state != ON ||
-        PhoneOnline2.state != ON
+        SecurityMode == ON ||
+        (PhoneOnline.state != ON &&
+        PhoneOnline2.state != ON)
     ) {
-        sendBroadcastNotification("Window was opened!");
+        if(windowAlertTimer === null) {
+            sendBroadcastNotification("Window was opened!");
+            windowAlertTimer = createTimer(now.plusMinutes(windowAlertSleep))[|
+                windowAlertTimer = null
+            ]
+        }
     }
 end
 
@@ -49,15 +65,15 @@ when
 then
     var quality = (XAIR_airquality.state as Number).floatValue;
     if(quality > 100.0) {
-        if(airAllertTimer !== null) {
-            airAllertTimer.reschedule(now.plusMinutes(airAllertSleep))
+        if(airAlertTimer !== null) {
+            airAlertTimer.reschedule(now.plusMinutes(airAlertSleep))
         } else {
             sendBroadcastNotification("Air pollution is to high!");
-            airAllertTimer = createTimer(now.plusMinutes(airAllertSleep))[|
-                airAllertTimer = null
+            airAlertTimer = createTimer(now.plusMinutes(airAlertSleep))[|
+                airAlertTimer = null
             ]
         }
     } else {
-        airAllertTimer = null
+        airAlertTimer = null
     }
 end

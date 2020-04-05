@@ -2,7 +2,7 @@ sitemap default label="Sitemap"
 {
     Text label="Alarm" icon="alarm"
     {
-        Switch item=SECURITY_MODE label="Alarm" icon="alarm"
+        Switch item=SecurityMode label="Alarm" icon="alarm"
         Text item=mihome_sensor_magnet_aq2_158d0002ca111b_isOpen label="Drzwi [%s]" icon="door"
         Text item=mihome_sensor_magnet_aq2_158d0002c9587a_isOpen label="Okno sypialnia [%s]"
         Text item=mihome_sensor_magnet_aq2_158d0002ca11db_isOpen label="Okno buro [%s]"
